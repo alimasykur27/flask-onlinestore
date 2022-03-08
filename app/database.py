@@ -1,4 +1,3 @@
-
 from app import mysql
 
 class Database:
@@ -8,14 +7,14 @@ class Database:
     def connect(self):
         return mysql.connection.cursor()
     
-    def read_new(self):
+    def getNew(self):
         cur = self.connect()
-        cur.execute("SELECT * FROM products LIMIT 10")
+        cur.execute("SELECT * FROM products ORDER BY tgl_input ASC LIMIT 10")
         rv = cur.fetchall()
         cur.close()
         return rv
         
-    def show_detail(self, id):
+    def getDetail(self, id):
         cur = self.connect()
         cur.execute("SELECT * FROM products WHERE id = %s", id)
         rv = cur.fetchall()

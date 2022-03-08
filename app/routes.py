@@ -6,15 +6,15 @@ from app.database import Database
 db = Database()
 
 @app.route('/')
-@app.route('/home')
+@app.route('/books')
 def home():
-    data = db.read_new()
+    data = db.getNew()
     return jsonify(data)
 
-@app.route('/detail')
+@app.route('/details')
 def detail():
     id = request.args.get('id')
-    data = db.show_detail(id)
+    data = db.getDetail(id)
     return jsonify(data)
     
 
